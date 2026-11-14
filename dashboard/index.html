@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <span class="pulse" aria-hidden="true"></span>
+      <div>
+        <div class="brand-name">TOKEN RADAR</div>
+        <div class="brand-sub">Pre-token protocols, ranked by what a launch would be worth</div>
+      </div>
+    </div>
+    <div class="top-meta" id="top-meta"></div>
+  </header>
+
+  <section class="stats" id="stats" aria-label="Snapshot facts"></section>
+
+  <section class="panel method" aria-label="How the value is worked out">
+    <h2>How the value is worked out</h2>
+    <p class="method-formula" id="method-formula"></p>
+    <p>Each category's multiple is the market's own: the median market-cap-to-TVL ratio of the protocols in this same snapshot whose token already trades (three or more of them, else the snapshot-wide median), clamped to 0.05–2.50. No protocol name is ever special-cased — the same formula scores every row. A protocol "records no token" when DefiLlama's record carries no market cap, no CoinGecko id and no symbol; that is not proof it has none.</p>
+    <div class="multiples-wrap">
+      <h3>Category multiples used</h3>
+      <table class="multiples" id="multiples">
+        <thead><tr><th>Category</th><th>Multiple</th><th>Live protocols</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel controls" aria-label="Board controls">
+    <div class="tabs" role="tablist" aria-label="Views">
+      <button class="tab active" id="tab-board" role="tab" aria-selected="true">Ranked board</button>
+      <button class="tab" id="tab-live" role="tab" aria-selected="false">Already launched — live reference</button>
+    </div>
+    <div class="filters">
+      <label>Search <input type="search" id="q" placeholder="Name or slug…" autocomplete="off"></label>
+      <label>Chain <select id="chain"><option value="">All chains</option></select></label>
+      <label>Category <select id="category"><option value="">All categories</option></select></label>
+      <label class="check"><input type="checkbox" id="watchlist-only"> Watchlist only</label>
+      <label>Min implied value
+        <select id="min-value">
+          <option value="0">Any</option>
+          <option value="1000000">$1M+</option>
+          <option value="10000000">$10M+</option>
+          <option value="50000000">$50M+</option>
+        </select>
+      </label>
+      <span class="count" id="count"></span>
+    </div>
+  </section>
+
+  <main id="board" tabindex="-1">
+    <section class="panel">
+      <div class="board-head">
+        <h2 id="board-title">Ranked board</h2>
+        <p class="board-note">Click a column to sort. Click a protocol for its detail and farm plan.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="board" id="board-table">
+          <thead><tr>
+            <th data-sort="rank" class="num">#</th>
+            <th data-sort="name">Protocol</th>
+            <th data-sort="category">Category</th>
+            <th data-sort="chains">Chains</th>
+            <th data-sort="tvl_usd" class="num">TVL</th>
+            <th data-sort="change_7d" class="num">7d</th>
+            <th data-sort="age_days" class="num">Age</th>
+            <th data-sort="implied_value_usd" class="num">Implied value</th>
+            <th class="num">Share</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="empty" id="board-empty" hidden>No protocol matches these filters.</p>
+    </section>
+
+    <section class="panel detail" id="detail" aria-label="Protocol detail" hidden></section>
+
+    <section class="panel live" id="live-panel" hidden>
+      <h2>Already launched — the live reference</h2>
+      <p>These protocols already trade, so the board shows the market's own value for them instead of a model's. They are here so a reader can check the multiples above against real prices — they are not ranked and they take no prize.</p>
+      <div class="table-wrap">
+        <table class="board" id="live-table">
+          <thead><tr>
+            <th>Protocol</th><th>Category</th><th>Chains</th>
+            <th class="num">TVL</th><th class="num">Market cap</th><th class="num">Mcap / TVL</th><th class="num">7d</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p id="foot-source"></p>
+    <p>Implied values are this radar's own claim, worked out from the snapshot's figures; they are not a prediction that a token will be issued, or when, or at what price. Farm steps are suggestions, not financial advice — never pay to claim an airdrop.</p>
+  </footer>
+</div>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
